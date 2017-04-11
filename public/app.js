@@ -1,5 +1,5 @@
 var init = function(){
-  var state = JSON.parse(localStorage.getItem('todoList')) || [];
+  var state = JSON.parse(localStorage.getItem('todoList')) || {};
   var list = document.querySelector('#todo-list');
   var button = document.querySelector('button');
   var dropDown = document.querySelector('select');
@@ -14,12 +14,13 @@ var init = function(){
 
 
 var handleSelection = function(){
-  this.value
+  var name = this.value;
 
+   //populate()
 
+   return name
 
 }
-
 
 var populate = function(list, state){
   //for each item in the state, invoke addItem
@@ -44,8 +45,11 @@ var addItem = function(list, item){
 var handleClick = function(){
   var newItem = document.querySelector("#new-item")
   var list = document.querySelector('#todo-list');
+
+  var name = handleSelection();
+  console.log(name)
   addItem(list, newItem.value)
-  save(newItem.value)
+  save(newItem.value, name)
   newItem.value = "";
 
 
@@ -55,13 +59,14 @@ var handleClick = function(){
   //invoke save
 }
 
-var save = function(item){
-  var temp = JSON.parse(localStorage.getItem('todoList')) || [];
-  temp.push(item)
+var save = function(item, name){
+  var temp = JSON.parse(localStorage.getItem('todoList'));
+  console.log(temp)
+  temp[name].push(item)
+  console.log(temp)
   var data = JSON.stringify(temp)
+  console.log(data)
   localStorage.setItem("todoList", data)
-  //save the item to localStorage 
-  //NOTE You'll have to use JSON.stringify
 }
 
 window.onload = init;
