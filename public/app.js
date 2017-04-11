@@ -2,19 +2,30 @@ var init = function(){
   var state = JSON.parse(localStorage.getItem('todoList')) || [];
   var list = document.querySelector('#todo-list');
   var button = document.querySelector('button');
+  var dropDown = document.querySelector('select');
+
 
   button.onclick = handleClick;
+  dropDown.onchange = handleSelection;
+
 
   populate(list, state);
 }
+
+
+var handleSelection = function(){
+  this.value
+
+
+
+}
+
 
 var populate = function(list, state){
   //for each item in the state, invoke addItem
 
   state.forEach(function(item){
-
     addItem(list, item);
-
   })
 
 
